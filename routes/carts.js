@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Cart = require("../models/Cart");
+const Product = require("../models/Product");
 
 // Get all carts
 router.get("/", async (req, res) => {
   try {
-    const carts = await Cart.find();
+    const carts = await Cart.find().populate("items.product");
     res.json(carts);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -19,10 +20,15 @@ router.get("/:id", getCart, (req, res) => {
 
 // Create a cart
 router.post("/", async (req, res) => {
+  const user = req.body.user;
+  const items = req.body.items.map((item) => ({
+    product: item.product,
+    quantity: item.quantity,
+  }));
+
   const cart = new Cart({
-    products: req.body.products,
-    quantities: req.body.quantities,
-    user: req.body.user,
+    user,
+    items,
   });
 
   try {
@@ -35,16 +41,13 @@ router.post("/", async (req, res) => {
 
 // Update a cart
 router.patch("/:id", getCart, async (req, res) => {
-  if (req.body.products != null) {
-    res.cart.products = req.body.products;
-  }
+  const updatedItems = req.body.items.map((item) => ({
+    product: item.product,
+    quantity: item.quantity,
+  }));
 
-  if (req.body.quantities != null) {
-    res.cart.quantities = req.body.quantities;
-  }
-
-  if (req.body.user != null) {
-    res.cart.user = req.body.user;
+  if (req.body.items != null) {
+    res.cart.items = updatedItems;
   }
 
   try {
@@ -69,7 +72,7 @@ async function getCart(req, res, next) {
   let cart;
 
   try {
-    cart = await Cart.findById(req.params.id);
+    cart = await Cart.findById(req.params.id).populate("items.product");
     if (cart == null) {
       return res.status(404).json({ message: "Cannot find cart" });
     }

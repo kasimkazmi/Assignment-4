@@ -497,6 +497,158 @@
 			"response": []
 		},
 		{
+			"name": "Add to Cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product\": \"6615542b5d06c29052f6c2db\",\r\n  \"user\": \"661578cf5acc63f0d015148b\",\r\n  \"rating\": 5,\r\n  \"text\": \"This is a great product!\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Carts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product\": \"6615542b5d06c29052f6c2db\",\r\n  \"user\": \"661578cf5acc63f0d015148b\",\r\n  \"rating\": 5,\r\n  \"text\": \"This is a great product!\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/carts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart by ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product\": \"6615542b5d06c29052f6c2db\",\r\n  \"user\": \"661578cf5acc63f0d015148b\",\r\n  \"rating\": 5,\r\n  \"text\": \"This is a great product!\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/carts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cart by ID",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product\": \"6615542b5d06c29052f6c2db\",\r\n  \"user\": \"661578cf5acc63f0d015148b\",\r\n  \"rating\": 5,\r\n  \"text\": \"This is a great product!\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/carts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete From Cart by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product\": \"6615542b5d06c29052f6c2db\",\r\n  \"user\": \"661578cf5acc63f0d015148b\",\r\n  \"rating\": 5,\r\n  \"text\": \"This is a great product!\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/carts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"carts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Update Comment",
 			"request": {
 				"method": "GET",
@@ -519,18 +671,16 @@
 		{
 			"name": "Delete Comment",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/comments",
-					"protocol": "http",
+					"raw": "{{baseUrl}}api/comments/6615814b92a1b8eda2b0045b",
 					"host": [
-						"localhost"
+						"{{baseUrl}}api"
 					],
-					"port": "3000",
 					"path": [
-						"api",
-						"comments"
+						"comments",
+						"6615814b92a1b8eda2b0045b"
 					]
 				}
 			},
