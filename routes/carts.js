@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Cart = require('../models/Cart');
+const Cart = require("../models/Cart");
 
 // Get all carts
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const carts = await Cart.find();
     res.json(carts);
@@ -13,12 +13,12 @@ router.get('/', async (req, res) => {
 });
 
 // Get one cart
-router.get('/:id', getCart, (req, res) => {
+router.get("/:id", getCart, (req, res) => {
   res.json(res.cart);
 });
 
 // Create a cart
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const cart = new Cart({
     products: req.body.products,
     quantities: req.body.quantities,
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update a cart
-router.patch('/:id', getCart, async (req, res) => {
+router.patch("/:id", getCart, async (req, res) => {
   if (req.body.products != null) {
     res.cart.products = req.body.products;
   }
@@ -56,10 +56,10 @@ router.patch('/:id', getCart, async (req, res) => {
 });
 
 // Delete a cart
-router.delete('/:id', getCart, async (req, res) => {
+router.delete("/:id", getCart, async (req, res) => {
   try {
-    await res.cart.remove();
-    res.json({ message: 'Cart deleted' });
+    await res.cart.deleteOne();
+    res.json({ message: "Cart deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -71,7 +71,7 @@ async function getCart(req, res, next) {
   try {
     cart = await Cart.findById(req.params.id);
     if (cart == null) {
-      return res.status(404).json({ message: 'Cannot find cart' });
+      return res.status(404).json({ message: "Cannot find cart" });
     }
   } catch (err) {
     return res.status(500).json({ message: err.message });
