@@ -1,5 +1,9 @@
 **Technologies **
 
+
+To run first use npm i then node server.js
+
+
 **Server** NodeJS
 
 **Client** Postman 
